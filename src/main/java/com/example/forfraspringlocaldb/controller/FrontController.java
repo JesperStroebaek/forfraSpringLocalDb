@@ -8,7 +8,16 @@ public class FrontController
 {
     @GetMapping("/")
     public String renderIndex(){
-        return "/index";
+        return "/home/index";
+    }
+    @GetMapping("/")
+    public String addCar(){
+        return "/home/add-car";
+    }
+
+    @GetMapping("/")
+    public String carList(){
+        return "/home/car-list";
     }
 
 
