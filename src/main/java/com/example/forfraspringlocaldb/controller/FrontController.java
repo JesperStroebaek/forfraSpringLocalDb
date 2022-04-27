@@ -49,7 +49,7 @@ public class FrontController {
     @GetMapping("/update-car")
     public String updateCar(@PathVariable("car_id") int carId, Model model) {
         model.addAttribute("cars", carService.findCarById(carId));
-        return "/home/update";
+        return "home/update";
     }
 
     @PostMapping("/submit-update-car")
