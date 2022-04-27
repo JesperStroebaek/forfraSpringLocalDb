@@ -21,7 +21,7 @@ public class FrontController {
     public String index(Model model) {
         List<Cars> carsList = carService.fetchAll();
         model.addAttribute("cars", carsList);
-        return "home/index";
+        return "/home/index";
     }
 
 
