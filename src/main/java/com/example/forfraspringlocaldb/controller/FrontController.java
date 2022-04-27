@@ -31,14 +31,14 @@ public class FrontController {
     }
 
     @GetMapping("/add-car-succes")
-    public String renderAddCarSucces(@PathVariable("id") int id, Model model) {
-        model.addAttribute("cars", carService.findCarById(id));
+    public String renderAddCarSucces(@PathVariable("car_id") int carId, Model model) {
+        model.addAttribute("cars", carService.findCarById(carId));
         return "home/add-car-succes";
     }
 
     @GetMapping("/delete-car")
-    public String delete(@PathVariable("car_id") int CarId) {
-        Boolean deleted = carService.deleteCar(CarId);
+    public String delete(@PathVariable("car_id") int carId) {
+        Boolean deleted = carService.deleteCar(carId);
         if (deleted) {
             return "redirect:/car-list";
         } else {
@@ -46,13 +46,13 @@ public class FrontController {
         }
     }
 
-    @GetMapping("/")
-    public String update(@PathVariable("id") int id, Model model) {
-        model.addAttribute("cars", carService.findCarById(id));
+    @GetMapping("/update-car")
+    public String updateCar(@PathVariable("car_id") int carId, Model model) {
+        model.addAttribute("cars", carService.findCarById(carId));
         return "/home/update";
     }
 
-    @PostMapping("/")
+    @PostMapping("/submit-update-car")
     public String updateCar(@ModelAttribute Cars cars) {
         carService.updateCar(cars.getCarId(), cars);
         return "redirect:/car-list";
