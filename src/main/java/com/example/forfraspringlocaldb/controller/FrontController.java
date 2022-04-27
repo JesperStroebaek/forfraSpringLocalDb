@@ -36,13 +36,13 @@ public class FrontController {
         return "home/add-car-succes";
     }
 
-    @GetMapping("/")
-    public String delete(@PathVariable("id") int id) {
-        Boolean deleted = carService.deleteCar(id);
+    @GetMapping("/delete-car")
+    public String delete(@PathVariable("car_id") int CarId) {
+        Boolean deleted = carService.deleteCar(CarId);
         if (deleted) {
             return "redirect:/car-list";
         } else {
-            return "redirect:/";
+            return "redirect:/car-list";
         }
     }
 
