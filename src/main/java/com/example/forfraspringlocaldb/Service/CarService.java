@@ -21,16 +21,16 @@ public class CarService {
         carsRepo.addCar(c);
     }
 
-    public Cars findCarById(int id) {
-        return carsRepo.findCarById(id);
+    public Cars findCarById(int carId) {
+        return carsRepo.findCarById(carId);
     }
 
-    public Boolean deleteCar(int id) {
-        return carsRepo.deleteCar(id);
+    public Boolean deleteCar(int carId) {
+        return carsRepo.deleteCar(carId);
     }
 
-    public void updateCar(int id, Cars c) {
-        carsRepo.updateCar(id, c);
+    public void updateCar(int carId, Cars c) {
+        carsRepo.updateCar(carId, c);
     }
 }
 

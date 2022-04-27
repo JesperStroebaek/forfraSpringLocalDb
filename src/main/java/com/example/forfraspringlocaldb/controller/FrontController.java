@@ -17,17 +17,17 @@ public class FrontController {
     @Autowired
     CarService carService;
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String index(Model model) {
         List<Cars> carsList = carService.fetchAll();
         model.addAttribute("cars", carsList);
-        return "/home/index";
+        return "home/index";
     }
 
     @PostMapping("/submit-add-car")
     public String add(@ModelAttribute Cars cars) {
         carService.addCar(cars);
-        return "redirect:/car-list";
+        return "redirect:home/car-list";
     }
 
     @GetMapping("/add-car-succes")
