@@ -17,36 +17,30 @@ public class FrontController {
     @Autowired
     CarService carService;
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String index(Model model) {
         List<Cars> carsList = carService.fetchAll();
         model.addAttribute("cars", carsList);
         return "home/index";
     }
 
-
-    @GetMapping("/")
-    public String renderIndex() {
-        return "/home/index";
-    }
-
-    @PostMapping("/")
+    @PostMapping("/submit-add-car")
     public String add(@ModelAttribute Cars cars) {
         carService.addCar(cars);
-        return "redirect/";
+        return "redirect:/car-list";
     }
 
     @GetMapping("/")
     public String viewOne(@PathVariable("id") int id, Model model) {
         model.addAttribute("cars", carService.findCarById(id));
-        return "home/viewOne";
+        return "/home/viewOne";
     }
 
     @GetMapping("/")
     public String delete(@PathVariable("id") int id) {
         Boolean deleted = carService.deleteCar(id);
         if (deleted) {
-            return "redirect:/";
+            return "redirect:/car-list";
         } else {
             return "redirect:/";
         }
@@ -55,13 +49,13 @@ public class FrontController {
     @GetMapping("/")
     public String update(@PathVariable("id") int id, Model model) {
         model.addAttribute("cars", carService.findCarById(id));
-        return "home/update";
+        return "/home/update";
     }
 
     @PostMapping("/")
     public String updateCar(@ModelAttribute Cars cars) {
         carService.updateCar(cars.getCarId(), cars);
-        return "redirect:/";
+        return "redirect:/car-list";
     }
 }
 
