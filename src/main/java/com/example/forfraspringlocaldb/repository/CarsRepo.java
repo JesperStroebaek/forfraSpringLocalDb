@@ -22,6 +22,14 @@ public class CarsRepo {
         return template.query(sql, rowMapper);
 
     }
-
-
+    public void addCar(Cars car){
+        String sql = "INSERT INTO person (id, first_name, last_name) VALUES(?, ?, ?)";
+        template.update(sql, Cars.getCarId(), Cars.getCarModel(), Cars.getCarBrand());
+    }
+    public Cars findCarByCarId(int id){
+        String sql = "SELECT * FROM person WHERE id = ?";
+        RowMapper<Cars> rowMapper = new BeanPropertyRowMapper<>(Cars.class);
+        Cars car = template.queryForObject(sql, rowMapper, id);
+        return car;
+    }
 }
