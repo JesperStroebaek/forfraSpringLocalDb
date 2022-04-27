@@ -15,6 +15,8 @@ public class CarsRepo {
     @Autowired
     JdbcTemplate template;
 
+
+
     public List<Cars> fetchAll(){
 
         String sql = "SELECT * FROM kailua_car_rental.cars";
@@ -23,5 +25,30 @@ public class CarsRepo {
 
     }
 
+    public void addCar(Cars c) {
+        String sql = "INSERT INTO cars (id, car_brand, car_model) VALUES (?,?,?)";
+        template.update(sql, c.getCarId(), c.getCarBrand(), c.getCarModel());
+    }
 
+    public Cars findCarById(int id){
+        String sql = "SELECT FROM cars WHERE id = ?";
+        RowMapper<Cars> rowMapper = new BeanPropertyRowMapper<>(Cars.class);
+        Cars c = template.queryForObject(sql, rowMapper, id);
+        return c;
+    }
+
+
+    public Boolean deleteCar(int id) {
+        String sql = "DELETE FROM cars WHERE id = ?";
+        return template.update(sql, id) > 0;
+    }
+
+    public void updateCar(int id, Cars c) {
+        String sql = "UPDATE car Set car_brand = ?, car_model = ? WHERE id = ?";
+        template.update(sql, c.getCarBrand(), c.getCarModel(), c.getCarId());
+    }
 }
+
+
+
+
