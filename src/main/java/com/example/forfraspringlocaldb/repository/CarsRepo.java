@@ -26,12 +26,12 @@ public class CarsRepo {
     }
 
     public void addCar(Cars c) {
-        String sql = "INSERT INTO kailua_car_rental.cars (id, car_brand, car_model) VALUES (?,?,?)";
+        String sql = "INSERT INTO kailua_car_rental.cars (car_id, brand, model) VALUES (?,?,?)";
         template.update(sql, c.getCarId(), c.getCarBrand(), c.getCarModel());
     }
 
     public Cars findCarById(int id){
-        String sql = "SELECT FROM kailua_car_rental.cars WHERE id = ?";
+        String sql = "SELECT * FROM kailua_car_rental.cars WHERE car_id = ?";
         RowMapper<Cars> rowMapper = new BeanPropertyRowMapper<>(Cars.class);
         Cars c = template.queryForObject(sql, rowMapper, id);
         return c;
@@ -39,12 +39,12 @@ public class CarsRepo {
 
 
     public Boolean deleteCar(int id) {
-        String sql = "DELETE FROM kailua_car_rental.cars WHERE id = ?";
+        String sql = "DELETE FROM kailua_car_rental.cars WHERE car_id = ?";
         return template.update(sql, id) > 0;
     }
 
     public void updateCar(int id, Cars c) {
-        String sql = "UPDATE kailua_car_rental.cars Set car_brand = ?, car_model = ? WHERE id = ?";
+        String sql = "UPDATE kailua_car_rental.cars Set brand = ?, model = ? WHERE car_id = ?";
         template.update(sql, c.getCarBrand(), c.getCarModel(), c.getCarId());
     }
 }
