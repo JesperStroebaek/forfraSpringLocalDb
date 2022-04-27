@@ -30,10 +30,10 @@ public class FrontController {
         return "redirect:/car-list";
     }
 
-    @GetMapping("/")
-    public String viewOne(@PathVariable("id") int id, Model model) {
+    @GetMapping("/add-car-succes")
+    public String renderAddCarSucces(@PathVariable("id") int id, Model model) {
         model.addAttribute("cars", carService.findCarById(id));
-        return "/home/viewOne";
+        return "home/add-car-succes";
     }
 
     @GetMapping("/")
