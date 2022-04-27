@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>car-list</title>
+</head>
+<body>
+<h1>Car list</h1>
+<table style="border: black solid 2px">
+    <thead>
+        <tr>
+            <th>Car Id</th>
+            <th>Car brand</th>
+            <th>Car Model</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="cars: ${cars}"></tr>
+        <td th:text="${cars.car_id}"/>
+    </tbody>
+</table>
+<a href="add-car.html">Add new car</a>
+<a href="/">Home</a>
+</body>
+</html>
